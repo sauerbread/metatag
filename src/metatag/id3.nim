@@ -341,7 +341,7 @@ proc writeId3*(filename: string, tag: Id3Tag): void =
       strm.writeData(utfTerminated.addr, 2)
       strm.writeData(picBuffer[0].addr, picBuffer.len)
 
-  var tagSize = strm.getPosition()
+  var tagSize = strm.getPosition() - 10 # Totalsize - Header
   var encodedSize = encodeSize(tagSize)
 
   # Its Rewind Time
